@@ -5,21 +5,24 @@
  * @size: size.
  */
 void bubble_sort(int *array, size_t size)
-{	
-	int i, temp, sort;
+{
+	size_t i, j;	
+	int temp = size, sort = 0;
 
-	while (sort == 0)
+	sort = 1;
+	for (i = 1; i < size - 1; i++)
 	{
-		for (i = 0; i < array[i]; i++)
+		for (j = 1; j < size - 1; j++)
 		{
-			if (array[i] > array[i + 1])
+			if (array[j] > array[j + 1])
 			{
-				temp = array[i];
-				array[i] = array[i + 1];
-				array[i + 1] = temp;
+				temp = array[j];
+				array[j] = array[j + 1];
+				array[j + 1] = temp;
+				print_array(array, size);
 			}
 		}
-		print_array(array, size);
-		sort++;
+		if (sort == 0)
+			break;
 	}
 }
