@@ -8,6 +8,7 @@
 void insertion_sort_list(listint_t **list)
 {
 	listint_t *now, *nowcp;
+
 	now = *list;
 
 	if (list == NULL || *list == NULL)
@@ -22,23 +23,20 @@ void insertion_sort_list(listint_t **list)
 			now->prev->next = now->next;
 
 			if (now->next)
-			{
 				now->next->prev = now->prev;
-				now->next = now->prev;
-				now->prev = now->prev->prev;
-			}
+
+			now->next = now->prev;
+			now->prev = now->prev->prev;
 
 			if (now->prev)
-			{
 				now->prev->next = now;
-				now->next->prev = now;
-			}
+
+			now->next->prev = now;
 
 			if (!now->prev)
-			{
 				*list = now;
-				print_list(*list);
-			}
+
+			print_list(*list);
 		}
 		now = nowcp;
 	}
