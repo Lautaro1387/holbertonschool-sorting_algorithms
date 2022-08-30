@@ -66,10 +66,8 @@ int quick_part(int *array, size_t size, int min, int max)
 }
 /**
  * swap - swap.
- * @array: array.
- * @size: size.
- * @min: left.
- * @max: right.
+ * @a: a.
+ * @b: b.
  */
 void swap(int *a, int *b)
 {
