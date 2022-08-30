@@ -6,6 +6,9 @@
  */
 void quick_sort(int *array, size_t size)
 {
+	if (!array)
+		return;
+
 	quick_recursion(array, size, 0, size - 1);
 }
 /**
@@ -32,10 +35,11 @@ void quick_recursion(int *array, size_t size, int min, int max)
  * @size: size.
  * @min: left.
  * @max: right.
+ * Return: int.
  */
 int quick_part(int *array, size_t size, int min, int max)
 {
-	int r, i = min - 1;
+	int i = min - 1, r;
 	int pivote = array[max];
 
 	for (r = min; r <= max; r++)
@@ -47,7 +51,6 @@ int quick_part(int *array, size_t size, int min, int max)
 		}
 	}
 	swap(array, size, i + 1, max);
-
 	return (i + 1);
 }
 /**
