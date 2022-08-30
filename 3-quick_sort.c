@@ -22,7 +22,7 @@ void quick_recursion(int *array, size_t size, int min, int max)
 {
 	int pivote;
 
-	if (min < max)
+	if (max - min > 0)
 	{
 		pivote = quick_part(array, size, min, max);
 		quick_recursion(array, size, min, pivote - 1);
@@ -30,7 +30,7 @@ void quick_recursion(int *array, size_t size, int min, int max)
 	}
 }
 /**
- * quick_recursion - Function.
+ * quick_part - Function.
  * @array: array.
  * @size: size.
  * @min: left.
@@ -39,36 +39,43 @@ void quick_recursion(int *array, size_t size, int min, int max)
  */
 int quick_part(int *array, size_t size, int min, int max)
 {
-	int i = min - 1, r;
-	int pivote = array[max];
 
-	for (r = min; r <= max; r++)
+	int *pivote, temp, aux;
+
+	pivote = array + max;
+	for (temp = aux = min; aux < max; aux++)
 	{
-		if (array[r] < pivote)
+		if (array[aux] < *pivote)
 		{
-			r++;
-			swap(array, size, i, r);
+			if (temp < aux)
+			{
+				swap(array + aux, array + temp);
+				print_array(array, size);
+			}
+			temp++;
 		}
 	}
-	swap(array, size, i + 1, max);
-	return (i + 1);
+
+	if (array[temp] > *pivote)
+	{
+		swap(array + temp, pivote);
+		print_array(array, size);
+	}
+
+	return (temp);
 }
 /**
  * swap - swap.
  * @array: array.
  * @size: size.
  * @min: left.
- * @max right.
+ * @max: right.
  */
-void swap(int *array, size_t size, int min, int max)
+void swap(int *a, int *b)
 {
-	int temp;
+	int c;
 
-	if (array[min] != array[max])
-	{
-		temp = array[min];
-		array[min] = array[max];
-		array[max] = temp;
-		print_array(array, size);
-	}
+	c = *a;
+	*a = *b;
+	*b = c;
 }
